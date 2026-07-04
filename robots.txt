@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://calculateur-pension-alimentaire.be/sitemap.xml
