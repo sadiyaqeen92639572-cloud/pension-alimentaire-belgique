@@ -69,6 +69,11 @@
         },
         {
           "@type": "Question",
+          "name": "La pension alimentaire est-elle déductible fiscalement en Belgique en 2026 ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "En 2026, 80% de la pension alimentaire versée est déductible du revenu imposable du débiteur. Côté créancier, 80% de la pension reçue est imposable comme revenu. Exemple : débiteur versant 500 €/mois au taux marginal de 45% économise 180 €/mois d'impôts (500 × 12 × 0,80 × 0,45 / 12). La pension doit être fixée par jugement ou convention homologuée pour être déductible. Source : SPF Finances, fin.belgium.be." }
+        },
+        {
+          "@type": "Question",
           "name": "Que faire si le parent ne paie pas la pension alimentaire en Belgique ?",
           "acceptedAnswer": { "@type": "Answer", "text": "En cas de non-paiement, plusieurs recours existent : saisie sur salaire ou sur compte bancaire, intervention du SECAL (Service des créances alimentaires) qui avance les montants impayés et se retourne ensuite contre le débiteur. Le SECAL est un service gratuit de l'État belge accessible aux créanciers d'aliments impayés depuis plus d'un mois." }
         }
@@ -234,6 +239,7 @@
   <div class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('renard', this)">📊 Méthode Renard</button>
     <button class="tab-btn" onclick="switchTab('index', this)">📈 Indexation 2026</button>
+    <button class="tab-btn" onclick="switchTab('fiscal', this)">💶 Impact Fiscal</button>
   </div>
 
   <div class="tool-card">
@@ -316,6 +322,50 @@
         </div>
         <div class="result-grid" id="ri-grid"></div>
         <div class="result-note">⚠️ Cette estimation est basée sur l'indice santé lissé Statbel. Vérifiez l'indice exact de votre mois de référence sur <strong>statbel.fgov.be</strong> pour un calcul précis.</div>
+      </div>
+    </div>
+
+    <!-- TAB 3 : FISCAL -->
+    <div id="tab-fiscal" class="tab-panel">
+      <p style="font-size:.88rem;color:var(--muted);margin-bottom:20px;">En 2026, la pension alimentaire pour enfants est <strong>déductible à 80%</strong> pour le débiteur et <strong>imposable à 80%</strong> pour le créancier (règle 80% — inchangée en 2026). Calculez l'économie fiscale nette réelle.</p>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Pension alimentaire versée <span>(€/mois)</span></label>
+          <input type="number" id="fPension" placeholder="ex: 500" min="0">
+        </div>
+        <div class="form-group">
+          <label>Revenu imposable débiteur <span>(€/an)</span></label>
+          <input type="number" id="fRevDebiteur" placeholder="ex: 36 000" min="0">
+        </div>
+        <div class="form-group">
+          <label>Taux marginal débiteur</label>
+          <select id="fTauxDebiteur">
+            <option value="0.25">25% (revenus &lt; 15 820 €)</option>
+            <option value="0.40">40% (15 820 – 27 030 €)</option>
+            <option value="0.45" selected>45% (27 030 – 46 440 €)</option>
+            <option value="0.50">50% (&gt; 46 440 €)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Taux marginal créancier</label>
+          <select id="fTauxCreancier">
+            <option value="0.25" selected>25% (bas revenus)</option>
+            <option value="0.40">40%</option>
+            <option value="0.45">45%</option>
+            <option value="0.50">50%</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calculerFiscal()">Calculer l'impact fiscal →</button>
+
+      <div class="result" id="result-fiscal">
+        <div class="result-hero">
+          <div class="r-label">Économie fiscale nette mensuelle (débiteur)</div>
+          <div class="r-amount" id="rf-amount"></div>
+          <div class="r-sub" id="rf-sub"></div>
+        </div>
+        <div class="result-grid" id="rf-grid"></div>
+        <div class="result-note" id="rf-note"></div>
       </div>
     </div>
 
@@ -425,6 +475,10 @@ Pension indexée = Pension d'origine × (Indice du mois actuel / Indice du mois 
     <div class="faq-a">Le SECAL (Service des créances alimentaires) est un service gratuit de l'État belge qui avance les montants impayés depuis plus d'un mois et se retourne ensuite contre le débiteur. Il est joignable au 02 542 13 16 ou sur <a href="https://finances.belgium.be/secal">finances.belgium.be/secal</a>. Une saisie sur salaire ou sur compte est aussi possible via huissier.</div>
   </div>
   <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">La pension alimentaire est-elle déductible fiscalement en Belgique en 2026 ?</button>
+    <div class="faq-a"><strong>80% de la pension alimentaire versée est déductible</strong> du revenu imposable du débiteur. Si vous versez 500 €/mois et êtes au taux marginal de 45%, votre économie fiscale est : 500 × 12 × 80% × 45% = <strong>2 160 €/an = 180 €/mois</strong>. Côté créancier, 80% de la pension reçue est imposable comme revenu. La pension doit être fixée par jugement ou convention homologuée pour bénéficier de la déductibilité. Utilisez notre onglet "💶 Impact Fiscal" pour calculer votre situation.</div>
+  </div>
+  <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">La ligue des familles propose-t-elle un calcul de pension alimentaire ?</button>
     <div class="faq-a">La Ligue des Familles belge propose un outil de <strong>calcul pension alimentaire belgique ligue des familles</strong> basé sur la méthode Renard. Notre calculateur applique la même méthodologie officielle. Pour un avis personnalisé, un avocat spécialisé en droit de la famille reste la meilleure option.</div>
   </div>
@@ -532,6 +586,43 @@ function calculerIndex() {
 
   document.getElementById('result-index').style.display = 'block';
   document.getElementById('result-index').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function calculerFiscal() {
+  const pension = parseFloat(document.getElementById('fPension').value);
+  if (!pension || pension <= 0) { alert('Veuillez saisir le montant de la pension.'); return; }
+  const tauxD = parseFloat(document.getElementById('fTauxDebiteur').value);
+  const tauxC = parseFloat(document.getElementById('fTauxCreancier').value);
+
+  // Règle 80% : 80% de la pension annuelle est déductible
+  const pensionAnnuelle = pension * 12;
+  const montantDeductible = pensionAnnuelle * 0.80;
+  const economieFiscaleAnnuelle = montantDeductible * tauxD;
+  const economieFiscaleMensuelle = economieFiscaleAnnuelle / 12;
+
+  // Impact créancier : 80% imposable
+  const montantImposable = pensionAnnuelle * 0.80;
+  const impotSupplementaireAnnuel = montantImposable * tauxC;
+  const impotSupplementaireMensuel = impotSupplementaireAnnuel / 12;
+
+  // Coût net réel pour le débiteur (après économie fiscale)
+  const coutNetMensuel = pension - economieFiscaleMensuelle;
+  // Gain net réel pour le créancier (après impôt)
+  const gainNetMensuel = pension - impotSupplementaireMensuel;
+
+  document.getElementById('rf-amount').textContent = economieFiscaleMensuelle.toFixed(2).replace('.', ',') + ' €/mois';
+  document.getElementById('rf-sub').textContent = `Déductibilité 80% × taux marginal ${Math.round(tauxD*100)}% → économie ${economieFiscaleAnnuelle.toFixed(0)} €/an`;
+
+  document.getElementById('rf-grid').innerHTML = `
+    <div class="r-stat"><div class="sv">${coutNetMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Coût réel débiteur/mois<br><span style="font-size:.68rem;color:var(--muted)">après économie fiscale</span></div></div>
+    <div class="r-stat"><div class="sv">${gainNetMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Gain réel créancier/mois<br><span style="font-size:.68rem;color:var(--muted)">après impôt (80% imposable)</span></div></div>
+    <div class="r-stat"><div class="sv">${impotSupplementaireMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Impôt créancier/mois<br><span style="font-size:.68rem;color:var(--muted)">80% imposable × ${Math.round(tauxC*100)}%</span></div></div>
+  `;
+
+  document.getElementById('rf-note').innerHTML = `⚠️ <strong>Règle 2026 :</strong> 80% de la pension est déductible pour le débiteur et 80% est imposable pour le créancier. La pension alimentaire doit être fixée par jugement ou convention homologuée pour bénéficier de la déductibilité. Source : <a href="https://fin.belgium.be/fr/particuliers/avantages-fiscaux/pension-alimentaire-payee" target="_blank" rel="noopener">SPF Finances</a>.`;
+
+  document.getElementById('result-fiscal').style.display = 'block';
+  document.getElementById('result-fiscal').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function toggleFaq(btn) {
