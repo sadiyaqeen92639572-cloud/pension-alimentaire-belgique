@@ -444,6 +444,57 @@ Pension indexée = Pension d'origine × (Indice du mois actuel / Indice du mois 
     <a href="https://www.droitsquotidiens.be/fr/trouver-un-avocat" class="cta-btn" target="_blank" rel="noopener">Trouver un avocat spécialisé →</a>
   </div>
 
+  <h2 class="section-title">Comment fonctionne ce calculateur — Formules &amp; Méthode</h2>
+  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:28px 28px 20px;margin:0 0 40px;font-size:0.9rem;line-height:1.8;">
+    <p style="margin-bottom:16px;color:#64748b;font-size:0.82rem;text-transform:uppercase;letter-spacing:.5px;font-weight:600;">Source : Méthode Renard · Statbel · SPF Finances 2026 · Calcul déterministe — aucune IA, aucune estimation arbitraire</p>
+
+    <h3 style="font-size:1rem;margin:0 0 12px;">Constantes utilisées</h3>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:24px;font-size:0.88rem;">
+      <tr><th style="background:#1e4d8c;color:white;padding:8px 12px;text-align:left;">Constante</th><th style="background:#1e4d8c;color:white;padding:8px 12px;text-align:left;">Valeur</th><th style="background:#1e4d8c;color:white;padding:8px 12px;text-align:left;">Source</th></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Pourcentage Renard — 1 enfant</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">18% du revenu net combiné</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Méthode Renard</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Pourcentage Renard — 2 enfants</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">27%</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Méthode Renard</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Pourcentage Renard — 3 enfants</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">36%</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Méthode Renard</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Pourcentage Renard — 4 enfants</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">43%</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Méthode Renard</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Pourcentage Renard — 5 enfants ou +</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">48%</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Méthode Renard</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Indice santé lissé Statbel 2026</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">137,3 (base 2013=100)</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Statbel / statbel.fgov.be</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Déductibilité fiscale débiteur (enfants)</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">80% du montant versé</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">SPF Finances / CIR92 art. 104</td></tr>
+      <tr><td style="padding:8px 12px;">Imposabilité créancier (enfants)</td><td style="padding:8px 12px;font-weight:700;">80% du montant reçu</td><td style="padding:8px 12px;">SPF Finances / CIR92</td></tr>
+    </table>
+
+    <h3 style="font-size:1rem;margin:0 0 12px;">Formules — Méthode Renard</h3>
+    <div style="background:#1e3a5f;color:#e2e8f0;border-radius:8px;padding:18px 20px;font-family:'Courier New',monospace;font-size:0.83rem;line-height:2;margin-bottom:20px;">
+      <span style="color:#86efac;">— Calcul Renard (garde principale chez un parent) —</span><br>
+      <span style="color:#7dd3fc;">revenu_total</span>     = revenu_net_A + revenu_net_B<br>
+      <span style="color:#7dd3fc;">pct_renard</span>       = RENARD_PCT[n_enfants]  <span style="color:#94a3b8;">← [0.18, 0.27, 0.36, 0.43, 0.48]</span><br>
+      <span style="color:#7dd3fc;">cout_total</span>       = revenu_total × pct_renard<br>
+      <span style="color:#7dd3fc;">part_A</span>           = (revenu_A / revenu_total) × cout_total<br>
+      <span style="color:#7dd3fc;">part_B</span>           = (revenu_B / revenu_total) × cout_total<br>
+      <span style="color:#7dd3fc;">pension</span>          = part du parent non-gardien  <span style="color:#94a3b8;">← versée au parent gardien</span><br>
+      <br>
+      <span style="color:#86efac;">— Hébergement alterné (50/50) —</span><br>
+      <span style="color:#7dd3fc;">pension_alt</span>      = |part_A − part_B| / 2  <span style="color:#94a3b8;">← parent au revenu plus élevé verse</span><br>
+      <br>
+      <span style="color:#86efac;">— Indexation (indice santé lissé Statbel) —</span><br>
+      <span style="color:#7dd3fc;">pension_indexee</span>  = pension_origine × (INDICE[2026] / INDICE[annee_reference])<br>
+      <span style="color:#94a3b8;">                   = pension_origine × (137.3 / INDICE[annee])</span><br>
+      <br>
+      <span style="color:#86efac;">— Impact fiscal enfants (CIR92 art. 104) —</span><br>
+      <span style="color:#7dd3fc;">montant_deductible</span>   = pension_annuelle × 0.80<br>
+      <span style="color:#7dd3fc;">economie_debiteur</span>    = montant_deductible × taux_marginal_debiteur<br>
+      <span style="color:#7dd3fc;">cout_net_mensuel</span>     = pension_mensuelle − (economie_debiteur / 12)<br>
+      <span style="color:#7dd3fc;">montant_imposable</span>    = pension_annuelle × 0.80<br>
+      <span style="color:#7dd3fc;">impot_creancier</span>      = montant_imposable × taux_marginal_creancier<br>
+      <span style="color:#7dd3fc;">gain_net_mensuel</span>     = pension_mensuelle − (impot_creancier / 12)
+    </div>
+
+    <h3 style="font-size:1rem;margin:0 0 10px;">Indices Statbel utilisés (base 2013=100)</h3>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:16px;font-size:0.82rem;">
+      <tr><th style="background:#1e4d8c;color:white;padding:6px 10px;">Année</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2015</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2018</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2020</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2022</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2023</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2024</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2025</th><th style="background:#1e4d8c;color:white;padding:6px 10px;font-weight:800;">2026</th></tr>
+      <tr style="text-align:center;"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">Indice</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">102,7</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">107,3</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">110,4</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">115,9</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">129,0</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">131,8</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">134,9</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;font-weight:700;color:#1e4d8c;">137,3</td></tr>
+    </table>
+    <p style="font-size:0.78rem;color:#94a3b8;margin:0;">Calcul déterministe basé sur les barèmes officiels Renard et les indices Statbel publiés. La méthode Renard est une référence judiciaire en Belgique, non contraignante légalement. Consultez un avocat spécialisé pour votre situation personnelle.</p>
+  </div>
+
   <h2 class="section-title">Questions fréquentes</h2>
 
   <div class="faq-item">
