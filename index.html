@@ -71,7 +71,7 @@
         {
           "@type": "Question",
           "name": "La pension alimentaire est-elle déductible fiscalement en Belgique en 2026 ?",
-          "acceptedAnswer": { "@type": "Answer", "text": "En 2026, 80% de la pension alimentaire versée est déductible du revenu imposable du débiteur. Côté créancier, 80% de la pension reçue est imposable comme revenu. Exemple : débiteur versant 500 €/mois au taux marginal de 45% économise 180 €/mois d'impôts (500 × 12 × 0,80 × 0,45 / 12). La pension doit être fixée par jugement ou convention homologuée pour être déductible. Source : SPF Finances, fin.belgium.be." }
+          "acceptedAnswer": { "@type": "Answer", "text": "En 2026, 60% de la pension alimentaire versée est déductible du revenu imposable du débiteur (réforme fédérale : 80% jusqu'en 2024, 70% en 2025, 60% en 2026, 50% dès 2027). Côté créancier, 60% de la pension reçue est imposable comme revenu. Exemple : débiteur versant 500 €/mois au taux marginal de 45% économise 135 €/mois d'impôts (500 × 12 × 0,60 × 0,45 / 12). La pension doit être fixée par jugement ou convention homologuée pour être déductible. Source : SPF Finances, fin.belgium.be." }
         },
         {
           "@type": "Question",
@@ -328,7 +328,7 @@
 
     <!-- TAB 3 : FISCAL -->
     <div id="tab-fiscal" class="tab-panel">
-      <p style="font-size:.88rem;color:var(--muted);margin-bottom:20px;">En 2026, la pension alimentaire pour enfants est <strong>déductible à 80%</strong> pour le débiteur et <strong>imposable à 80%</strong> pour le créancier (règle 80% — inchangée en 2026). Calculez l'économie fiscale nette réelle.</p>
+      <p style="font-size:.88rem;color:var(--muted);margin-bottom:20px;">En 2026, la pension alimentaire pour enfants est <strong>déductible à 60%</strong> pour le débiteur et <strong>imposable à 60%</strong> pour le créancier (réforme fédérale : 80% jusqu'en 2024, 70% en 2025, 60% en 2026, 50% dès 2027). Calculez l'économie fiscale nette réelle.</p>
       <div class="form-grid">
         <div class="form-group">
           <label>Pension alimentaire versée <span>(€/mois)</span></label>
@@ -342,9 +342,9 @@
           <label>Taux marginal débiteur</label>
           <select id="fTauxDebiteur">
             <option value="0.25">25% (revenus &lt; 15 820 €)</option>
-            <option value="0.40">40% (15 820 – 27 030 €)</option>
-            <option value="0.45" selected>45% (27 030 – 46 440 €)</option>
-            <option value="0.50">50% (&gt; 46 440 €)</option>
+            <option value="0.40">40% (15 820 – 27 920 €)</option>
+            <option value="0.45" selected>45% (27 920 – 48 320 €)</option>
+            <option value="0.50">50% (&gt; 48 320 €)</option>
           </select>
         </div>
         <div class="form-group">
@@ -458,8 +458,8 @@ Pension indexée = Pension d'origine × (Indice du mois actuel / Indice du mois 
       <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Pourcentage Renard — 4 enfants</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">43%</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Méthode Renard</td></tr>
       <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Pourcentage Renard — 5 enfants ou +</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">48%</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Méthode Renard</td></tr>
       <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Indice santé lissé Statbel 2026</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">137,3 (base 2013=100)</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Statbel / statbel.fgov.be</td></tr>
-      <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Déductibilité fiscale débiteur (enfants)</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">80% du montant versé</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">SPF Finances / CIR92 art. 104</td></tr>
-      <tr><td style="padding:8px 12px;">Imposabilité créancier (enfants)</td><td style="padding:8px 12px;font-weight:700;">80% du montant reçu</td><td style="padding:8px 12px;">SPF Finances / CIR92</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Déductibilité fiscale débiteur (enfants) — 2026</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">60% du montant versé</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">SPF Finances / CIR92 art. 104 (80% jusqu'en 2024, 70% en 2025, 60% en 2026, 50% dès 2027)</td></tr>
+      <tr><td style="padding:8px 12px;">Imposabilité créancier (enfants) — 2026</td><td style="padding:8px 12px;font-weight:700;">60% du montant reçu</td><td style="padding:8px 12px;">SPF Finances / CIR92</td></tr>
     </table>
 
     <h3 style="font-size:1rem;margin:0 0 12px;">Formules — Méthode Renard</h3>
@@ -480,10 +480,11 @@ Pension indexée = Pension d'origine × (Indice du mois actuel / Indice du mois 
       <span style="color:#94a3b8;">                   = pension_origine × (137.3 / INDICE[annee])</span><br>
       <br>
       <span style="color:#86efac;">— Impact fiscal enfants (CIR92 art. 104) —</span><br>
-      <span style="color:#7dd3fc;">montant_deductible</span>   = pension_annuelle × 0.80<br>
+      <span style="color:#94a3b8;">                   ← taux déductibilité 2026 = 60% (80% jusqu'en 2024, 70% en 2025, 50% dès 2027)</span><br>
+      <span style="color:#7dd3fc;">montant_deductible</span>   = pension_annuelle × 0.60<br>
       <span style="color:#7dd3fc;">economie_debiteur</span>    = montant_deductible × taux_marginal_debiteur<br>
       <span style="color:#7dd3fc;">cout_net_mensuel</span>     = pension_mensuelle − (economie_debiteur / 12)<br>
-      <span style="color:#7dd3fc;">montant_imposable</span>    = pension_annuelle × 0.80<br>
+      <span style="color:#7dd3fc;">montant_imposable</span>    = pension_annuelle × 0.60<br>
       <span style="color:#7dd3fc;">impot_creancier</span>      = montant_imposable × taux_marginal_creancier<br>
       <span style="color:#7dd3fc;">gain_net_mensuel</span>     = pension_mensuelle − (impot_creancier / 12)
     </div>
@@ -528,7 +529,7 @@ Pension indexée = Pension d'origine × (Indice du mois actuel / Indice du mois 
   </div>
   <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">La pension alimentaire est-elle déductible fiscalement en Belgique en 2026 ?</button>
-    <div class="faq-a"><strong>80% de la pension alimentaire versée est déductible</strong> du revenu imposable du débiteur. Si vous versez 500 €/mois et êtes au taux marginal de 45%, votre économie fiscale est : 500 × 12 × 80% × 45% = <strong>2 160 €/an = 180 €/mois</strong>. Côté créancier, 80% de la pension reçue est imposable comme revenu. La pension doit être fixée par jugement ou convention homologuée pour bénéficier de la déductibilité. Utilisez notre onglet "💶 Impact Fiscal" pour calculer votre situation.</div>
+    <div class="faq-a"><strong>60% de la pension alimentaire versée est déductible en 2026</strong> du revenu imposable du débiteur (réforme fédérale : 80% jusqu'en 2024, 70% en 2025, 60% en 2026, 50% dès 2027). Si vous versez 500 €/mois et êtes au taux marginal de 45%, votre économie fiscale est : 500 × 12 × 60% × 45% = <strong>1 620 €/an = 135 €/mois</strong>. Côté créancier, 60% de la pension reçue est imposable comme revenu. La pension doit être fixée par jugement ou convention homologuée pour bénéficier de la déductibilité. Utilisez notre onglet "💶 Impact Fiscal" pour calculer votre situation.</div>
   </div>
   <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">La ligue des familles propose-t-elle un calcul de pension alimentaire ?</button>
@@ -646,14 +647,15 @@ function calculerFiscal() {
   const tauxD = parseFloat(document.getElementById('fTauxDebiteur').value);
   const tauxC = parseFloat(document.getElementById('fTauxCreancier').value);
 
-  // Règle 80% : 80% de la pension annuelle est déductible
+  // Règle 2026 : 60% de la pension annuelle est déductible (80% jusqu'en 2024, 70% en 2025, 60% en 2026, 50% dès 2027)
+  const TAUX_DEDUCTIBILITE_2026 = 0.60;
   const pensionAnnuelle = pension * 12;
-  const montantDeductible = pensionAnnuelle * 0.80;
+  const montantDeductible = pensionAnnuelle * TAUX_DEDUCTIBILITE_2026;
   const economieFiscaleAnnuelle = montantDeductible * tauxD;
   const economieFiscaleMensuelle = economieFiscaleAnnuelle / 12;
 
-  // Impact créancier : 80% imposable
-  const montantImposable = pensionAnnuelle * 0.80;
+  // Impact créancier : 60% imposable
+  const montantImposable = pensionAnnuelle * TAUX_DEDUCTIBILITE_2026;
   const impotSupplementaireAnnuel = montantImposable * tauxC;
   const impotSupplementaireMensuel = impotSupplementaireAnnuel / 12;
 
@@ -663,15 +665,15 @@ function calculerFiscal() {
   const gainNetMensuel = pension - impotSupplementaireMensuel;
 
   document.getElementById('rf-amount').textContent = economieFiscaleMensuelle.toFixed(2).replace('.', ',') + ' €/mois';
-  document.getElementById('rf-sub').textContent = `Déductibilité 80% × taux marginal ${Math.round(tauxD*100)}% → économie ${economieFiscaleAnnuelle.toFixed(0)} €/an`;
+  document.getElementById('rf-sub').textContent = `Déductibilité 60% × taux marginal ${Math.round(tauxD*100)}% → économie ${economieFiscaleAnnuelle.toFixed(0)} €/an`;
 
   document.getElementById('rf-grid').innerHTML = `
     <div class="r-stat"><div class="sv">${coutNetMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Coût réel débiteur/mois<br><span style="font-size:.68rem;color:var(--muted)">après économie fiscale</span></div></div>
-    <div class="r-stat"><div class="sv">${gainNetMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Gain réel créancier/mois<br><span style="font-size:.68rem;color:var(--muted)">après impôt (80% imposable)</span></div></div>
-    <div class="r-stat"><div class="sv">${impotSupplementaireMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Impôt créancier/mois<br><span style="font-size:.68rem;color:var(--muted)">80% imposable × ${Math.round(tauxC*100)}%</span></div></div>
+    <div class="r-stat"><div class="sv">${gainNetMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Gain réel créancier/mois<br><span style="font-size:.68rem;color:var(--muted)">après impôt (60% imposable)</span></div></div>
+    <div class="r-stat"><div class="sv">${impotSupplementaireMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Impôt créancier/mois<br><span style="font-size:.68rem;color:var(--muted)">60% imposable × ${Math.round(tauxC*100)}%</span></div></div>
   `;
 
-  document.getElementById('rf-note').innerHTML = `⚠️ <strong>Règle 2026 :</strong> 80% de la pension est déductible pour le débiteur et 80% est imposable pour le créancier. La pension alimentaire doit être fixée par jugement ou convention homologuée pour bénéficier de la déductibilité. Source : <a href="https://fin.belgium.be/fr/particuliers/avantages-fiscaux/pension-alimentaire-payee" target="_blank" rel="noopener">SPF Finances</a>.`;
+  document.getElementById('rf-note').innerHTML = `⚠️ <strong>Règle 2026 :</strong> 60% de la pension est déductible pour le débiteur et 60% est imposable pour le créancier (réforme fédérale : 80% jusqu'en 2024, 70% en 2025, 60% en 2026, 50% dès 2027). La pension alimentaire doit être fixée par jugement ou convention homologuée pour bénéficier de la déductibilité. Source : <a href="https://fin.belgium.be/fr/particuliers/avantages-fiscaux/pension-alimentaire-payee" target="_blank" rel="noopener">SPF Finances</a>.`;
 
   document.getElementById('result-fiscal').style.display = 'block';
   document.getElementById('result-fiscal').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
