@@ -130,7 +130,7 @@
   .tool-wrapper { margin: -52px auto 56px; position: relative; z-index: 10; }
 
   .tab-nav { display: flex; gap: 0; background: white; border-radius: var(--radius) var(--radius) 0 0; border: 1px solid var(--border); border-bottom: none; overflow: hidden; }
-  .tab-btn { flex: 1; padding: 14px 16px; background: none; border: none; font-size: 0.88rem; font-weight: 600; cursor: pointer; color: var(--muted); border-bottom: 3px solid transparent; transition: all .15s; }
+  .tab-btn { flex: 1; padding: 14px 16px; background: none; border: none; font-size: 0.98rem; font-weight: 600; cursor: pointer; color: var(--muted); border-bottom: 3px solid transparent; transition: all .15s; }
   .tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); background: #f0f6ff; }
   .tab-btn:hover:not(.active) { background: #f9fafb; }
 
@@ -143,8 +143,8 @@
   @media (max-width: 580px) { .form-grid { grid-template-columns: 1fr; } .tool-card { padding: 20px 16px; } }
   .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-group.full { grid-column: 1 / -1; }
-  label { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; }
-  label span { font-weight: 400; text-transform: none; font-size: 0.75rem; }
+  label { font-size: 0.9rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; }
+  label span { font-weight: 400; text-transform: none; font-size: 0.85rem; }
   input[type=number], select {
     border: 2px solid var(--border); border-radius: 8px; padding: 12px 14px;
     font-size: 1rem; color: var(--text); background: white; width: 100%;
@@ -159,7 +159,7 @@
   .radio-opt label {
     display: flex; align-items: center; gap: 8px; padding: 11px 14px;
     border: 2px solid var(--border); border-radius: 8px; cursor: pointer;
-    font-size: 0.88rem; font-weight: 600; color: var(--text); text-transform: none; letter-spacing: 0;
+    font-size: 0.98rem; font-weight: 600; color: var(--text); text-transform: none; letter-spacing: 0;
     transition: all .15s;
   }
   .radio-opt input:checked + label { border-color: var(--brand); background: #eff6ff; color: var(--brand); }
@@ -173,22 +173,22 @@
 
   .result { margin-top: 24px; display: none; }
   .result-hero { background: linear-gradient(135deg, #1b4f8a 0%, #1d6fa8 100%); color: white; border-radius: 10px; padding: 24px; text-align: center; margin-bottom: 16px; }
-  .result-hero .r-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; opacity: .8; margin-bottom: 4px; }
+  .result-hero .r-label { font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; opacity: .8; margin-bottom: 4px; }
   .result-hero .r-amount { font-size: 2.4rem; font-weight: 900; }
-  .result-hero .r-sub { font-size: 0.88rem; opacity: .85; margin-top: 4px; }
+  .result-hero .r-sub { font-size: 0.98rem; opacity: .85; margin-top: 4px; }
   .result-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   @media (max-width: 480px) { .result-grid { grid-template-columns: 1fr 1fr; } }
   .r-stat { background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
   .r-stat .sv { font-size: 1.2rem; font-weight: 800; color: var(--brand); }
-  .r-stat .sl { font-size: 0.72rem; color: var(--muted); margin-top: 2px; line-height: 1.3; }
-  .result-note { background: #eff6ff; border-left: 4px solid var(--brand); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.85rem; color: #1e3a8a; }
+  .r-stat .sl { font-size: 0.82rem; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+  .result-note { background: #eff6ff; border-left: 4px solid var(--brand); border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 14px; font-size: 0.95rem; color: #1e3a8a; }
 
   .content { padding-bottom: 64px; }
   h2.section-title { font-size: 1.3rem; font-weight: 800; margin: 52px 0 18px; }
   h3.sub { font-size: 1rem; font-weight: 700; margin: 24px 0 10px; }
   p { color: #374151; margin-bottom: 14px; line-height: 1.75; }
 
-  .renard-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.88rem; }
+  .renard-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.98rem; }
   .renard-table th { background: var(--brand); color: white; padding: 10px 14px; text-align: left; font-weight: 600; }
   .renard-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
   .renard-table tr:nth-child(even) td { background: #f8faff; }
@@ -196,9 +196,9 @@
 
   .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin: 20px 0; }
   .step { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
-  .step-n { width: 30px; height: 30px; background: var(--brand); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; margin-bottom: 10px; }
-  .step h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 6px; }
-  .step p { font-size: 0.8rem; color: var(--muted); margin: 0; }
+  .step-n { width: 30px; height: 30px; background: var(--brand); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; margin-bottom: 10px; }
+  .step h4 { font-size: 0.98rem; font-weight: 700; margin-bottom: 6px; }
+  .step p { font-size: 0.9rem; color: var(--muted); margin: 0; }
 
   .cta-box { background: #0f2f55; color: white; border-radius: var(--radius); padding: 36px 32px; margin: 52px 0; }
   .cta-box h2 { color: white; font-size: 1.3rem; margin-bottom: 14px; }
@@ -209,17 +209,17 @@
   .cta-btn:hover { opacity: .9; }
   .cta-link { color: #93c5fd; text-decoration: underline; }
 
-  .index-formula { background: #f1f5f9; border-radius: 8px; padding: 16px 20px; font-family: monospace; font-size: 0.9rem; margin: 16px 0; color: var(--brand-dark); border-left: 4px solid var(--brand); }
+  .index-formula { background: #f1f5f9; border-radius: 8px; padding: 16px 20px; font-family: monospace; font-size: 1rem; margin: 16px 0; color: var(--brand-dark); border-left: 4px solid var(--brand); }
 
   .faq-item { border-bottom: 1px solid var(--border); }
-  .faq-q { width: 100%; background: none; border: none; text-align: left; padding: 18px 0; font-size: 0.92rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text); }
+  .faq-q { width: 100%; background: none; border: none; text-align: left; padding: 18px 0; font-size: 1.02rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text); }
   .faq-q::after { content: '+'; font-size: 1.3rem; color: var(--brand); flex-shrink: 0; margin-left: 12px; }
   .faq-q.open::after { content: '−'; }
-  .faq-a { display: none; padding: 0 0 16px; font-size: 0.88rem; color: #4b5563; line-height: 1.75; }
+  .faq-a { display: none; padding: 0 0 16px; font-size: 0.98rem; color: #4b5563; line-height: 1.75; }
   .faq-a.open { display: block; }
   .faq-a a { color: var(--brand); }
 
-  footer { background: #111827; color: #9ca3af; text-align: center; padding: 32px 20px; font-size: 0.82rem; }
+  footer { background: #111827; color: #9ca3af; text-align: center; padding: 32px 20px; font-size: 0.92rem; }
   footer p { color: #9ca3af; }
   footer a { color: #d1d5db; }
 </style>
@@ -290,7 +290,7 @@
 
     <!-- TAB 2 : INDEXATION -->
     <div id="tab-index" class="tab-panel">
-      <p style="font-size:.88rem;color:var(--muted);margin-bottom:20px;">La pension alimentaire s'indexe annuellement sur l'indice santé lissé belge (Statbel). Entrez le montant et l'année de départ pour calculer le montant indexé en 2026.</p>
+      <p style="font-size:0.98rem;color:var(--muted);margin-bottom:20px;">La pension alimentaire s'indexe annuellement sur l'indice santé lissé belge (Statbel). Entrez le montant et l'année de départ pour calculer le montant indexé en 2026.</p>
       <div class="form-grid">
         <div class="form-group">
           <label>Montant d'origine <span>(€/mois)</span></label>
@@ -328,7 +328,7 @@
 
     <!-- TAB 3 : FISCAL -->
     <div id="tab-fiscal" class="tab-panel">
-      <p style="font-size:.88rem;color:var(--muted);margin-bottom:20px;">En 2026, la pension alimentaire pour enfants est <strong>déductible à 60%</strong> pour le débiteur et <strong>imposable à 60%</strong> pour le créancier (réforme fédérale : 80% jusqu'en 2024, 70% en 2025, 60% en 2026, 50% dès 2027). Calculez l'économie fiscale nette réelle.</p>
+      <p style="font-size:0.98rem;color:var(--muted);margin-bottom:20px;">En 2026, la pension alimentaire pour enfants est <strong>déductible à 60%</strong> pour le débiteur et <strong>imposable à 60%</strong> pour le créancier (réforme fédérale : 80% jusqu'en 2024, 70% en 2025, 60% en 2026, 50% dès 2027). Calculez l'économie fiscale nette réelle.</p>
       <div class="form-grid">
         <div class="form-group">
           <label>Pension alimentaire versée <span>(€/mois)</span></label>
@@ -446,11 +446,11 @@ Pension indexée = Pension d'origine × (Indice du mois actuel / Indice du mois 
   </div>
 
   <h2 class="section-title">Comment fonctionne ce calculateur — Formules &amp; Méthode</h2>
-  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:28px 28px 20px;margin:0 0 40px;font-size:0.9rem;line-height:1.8;">
-    <p style="margin-bottom:16px;color:#64748b;font-size:0.82rem;text-transform:uppercase;letter-spacing:.5px;font-weight:600;">Source : Méthode Renard · Statbel · SPF Finances 2026 · Calcul déterministe — aucune IA, aucune estimation arbitraire</p>
+  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:28px 28px 20px;margin:0 0 40px;font-size:1rem;line-height:1.8;">
+    <p style="margin-bottom:16px;color:#64748b;font-size:0.92rem;text-transform:uppercase;letter-spacing:.5px;font-weight:600;">Source : Méthode Renard · Statbel · SPF Finances 2026 · Calcul déterministe — aucune IA, aucune estimation arbitraire</p>
 
     <h3 style="font-size:1rem;margin:0 0 12px;">Constantes utilisées</h3>
-    <table style="width:100%;border-collapse:collapse;margin-bottom:24px;font-size:0.88rem;">
+    <table style="width:100%;border-collapse:collapse;margin-bottom:24px;font-size:0.98rem;">
       <tr><th style="background:#1e4d8c;color:white;padding:8px 12px;text-align:left;">Constante</th><th style="background:#1e4d8c;color:white;padding:8px 12px;text-align:left;">Valeur</th><th style="background:#1e4d8c;color:white;padding:8px 12px;text-align:left;">Source</th></tr>
       <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Pourcentage Renard — 1 enfant</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">18% du revenu net combiné</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Méthode Renard</td></tr>
       <tr><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Pourcentage Renard — 2 enfants</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;font-weight:700;">27%</td><td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;">Méthode Renard</td></tr>
@@ -463,7 +463,7 @@ Pension indexée = Pension d'origine × (Indice du mois actuel / Indice du mois 
     </table>
 
     <h3 style="font-size:1rem;margin:0 0 12px;">Formules — Méthode Renard</h3>
-    <div style="background:#1e3a5f;color:#e2e8f0;border-radius:8px;padding:18px 20px;font-family:'Courier New',monospace;font-size:0.83rem;line-height:2;margin-bottom:20px;">
+    <div style="background:#1e3a5f;color:#e2e8f0;border-radius:8px;padding:18px 20px;font-family:'Courier New',monospace;font-size:0.93rem;line-height:2;margin-bottom:20px;">
       <span style="color:#86efac;">— Calcul Renard (garde principale chez un parent) —</span><br>
       <span style="color:#7dd3fc;">revenu_total</span>     = revenu_net_A + revenu_net_B<br>
       <span style="color:#7dd3fc;">pct_renard</span>       = RENARD_PCT[n_enfants]  <span style="color:#94a3b8;">← [0.18, 0.27, 0.36, 0.43, 0.48]</span><br>
@@ -490,11 +490,11 @@ Pension indexée = Pension d'origine × (Indice du mois actuel / Indice du mois 
     </div>
 
     <h3 style="font-size:1rem;margin:0 0 10px;">Indices Statbel utilisés (base 2013=100)</h3>
-    <table style="width:100%;border-collapse:collapse;margin-bottom:16px;font-size:0.82rem;">
+    <table style="width:100%;border-collapse:collapse;margin-bottom:16px;font-size:0.92rem;">
       <tr><th style="background:#1e4d8c;color:white;padding:6px 10px;">Année</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2015</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2018</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2020</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2022</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2023</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2024</th><th style="background:#1e4d8c;color:white;padding:6px 10px;">2025</th><th style="background:#1e4d8c;color:white;padding:6px 10px;font-weight:800;">2026</th></tr>
       <tr style="text-align:center;"><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">Indice</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">102,7</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">107,3</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">110,4</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">115,9</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">129,0</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">131,8</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;">134,9</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;font-weight:700;color:#1e4d8c;">137,3</td></tr>
     </table>
-    <p style="font-size:0.78rem;color:#94a3b8;margin:0;">Calcul déterministe basé sur les barèmes officiels Renard et les indices Statbel publiés. La méthode Renard est une référence judiciaire en Belgique, non contraignante légalement. Consultez un avocat spécialisé pour votre situation personnelle.</p>
+    <p style="font-size:0.88rem;color:#94a3b8;margin:0;">Calcul déterministe basé sur les barèmes officiels Renard et les indices Statbel publiés. La méthode Renard est une référence judiciaire en Belgique, non contraignante légalement. Consultez un avocat spécialisé pour votre situation personnelle.</p>
   </div>
 
   <h2 class="section-title">Questions fréquentes</h2>
@@ -668,9 +668,9 @@ function calculerFiscal() {
   document.getElementById('rf-sub').textContent = `Déductibilité 60% × taux marginal ${Math.round(tauxD*100)}% → économie ${economieFiscaleAnnuelle.toFixed(0)} €/an`;
 
   document.getElementById('rf-grid').innerHTML = `
-    <div class="r-stat"><div class="sv">${coutNetMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Coût réel débiteur/mois<br><span style="font-size:.68rem;color:var(--muted)">après économie fiscale</span></div></div>
-    <div class="r-stat"><div class="sv">${gainNetMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Gain réel créancier/mois<br><span style="font-size:.68rem;color:var(--muted)">après impôt (60% imposable)</span></div></div>
-    <div class="r-stat"><div class="sv">${impotSupplementaireMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Impôt créancier/mois<br><span style="font-size:.68rem;color:var(--muted)">60% imposable × ${Math.round(tauxC*100)}%</span></div></div>
+    <div class="r-stat"><div class="sv">${coutNetMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Coût réel débiteur/mois<br><span style="font-size:0.78rem;color:var(--muted)">après économie fiscale</span></div></div>
+    <div class="r-stat"><div class="sv">${gainNetMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Gain réel créancier/mois<br><span style="font-size:0.78rem;color:var(--muted)">après impôt (60% imposable)</span></div></div>
+    <div class="r-stat"><div class="sv">${impotSupplementaireMensuel.toFixed(2).replace('.',',')} €</div><div class="sl">Impôt créancier/mois<br><span style="font-size:0.78rem;color:var(--muted)">60% imposable × ${Math.round(tauxC*100)}%</span></div></div>
   `;
 
   document.getElementById('rf-note').innerHTML = `⚠️ <strong>Règle 2026 :</strong> 60% de la pension est déductible pour le débiteur et 60% est imposable pour le créancier (réforme fédérale : 80% jusqu'en 2024, 70% en 2025, 60% en 2026, 50% dès 2027). La pension alimentaire doit être fixée par jugement ou convention homologuée pour bénéficier de la déductibilité. Source : <a href="https://fin.belgium.be/fr/particuliers/avantages-fiscaux/pension-alimentaire-payee" target="_blank" rel="noopener">SPF Finances</a>.`;
