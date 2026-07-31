@@ -1,0 +1,41 @@
+# calculateur-pension-alimentaire.be
+
+> Calculateur gratuit de pension alimentaire en Belgique (méthode Renard), sans inscription ni email.
+
+Ce site calcule des estimations de pension alimentaire belge selon plusieurs méthodes reconnues par les praticiens du droit de la famille. Aucune API n'est exposée : le calcul s'exécute entièrement côté navigateur (JavaScript), sans backend ni stockage de données.
+
+## Méthode Renard — pension alimentaire pour enfants
+
+Formule (mode simple, forfaitaire par nombre d'enfants) :
+- coût total d'entretien = revenu net combiné des deux parents × pourcentage Renard
+- pourcentages : 1 enfant = 18%, 2 enfants = 27%, 3 enfants = 36%, 4 enfants = 43%, 5 enfants ou + = 48%
+- répartition entre parents proportionnelle à leurs revenus respectifs
+
+Formule (mode précis, pondéré par âge de l'enfant) :
+- pour chaque enfant, coefficient d'âge (0 an = 0.137 → 18 ans et + = 0.270, table complète sur la page)
+- part normalisée = coefficient de l'enfant / (somme des coefficients de tous les enfants + 1)
+- coût brut = part normalisée × (revenu net combiné + allocations familiales des deux parents)
+- coût net = coût brut − allocations familiales, réparti entre parents proportionnellement aux revenus
+- source des coefficients : implémentation Renard de référence utilisée par les praticiens belges (calc.leotr.be), vérifiée et croisée manuellement
+
+Plafond jurisprudentiel indicatif (non légal) : la pension ne dépasse généralement pas 1/3 des revenus nets du parent débiteur.
+
+## Pension alimentaire entre ex-époux
+
+Base légale : article 301 du Code civil belge. Fondée sur la notion de "besoin" du demandeur, pas un pourcentage automatique. Plafond indicatif identique (1/3 des revenus du débiteur).
+
+## Indexation
+
+Pension indexée = pension d'origine × (indice santé lissé Statbel du mois actuel / indice du mois de référence).
+
+## Impact fiscal (2026)
+
+60% de la pension versée est déductible pour le débiteur et imposable pour le créancier (réforme fédérale : 80% en 2024, 70% en 2025, 60% en 2026, 50% dès 2027). Source : SPF Finances.
+
+## Avertissement
+
+Ces calculs sont des estimations indicatives basées sur des méthodes de référence, pas des barèmes officiels imposés par la loi belge. Ils ne remplacent pas l'avis d'un avocat spécialisé en droit de la famille.
+
+## Contact / source
+
+Site : https://calculateur-pension-alimentaire.be/
