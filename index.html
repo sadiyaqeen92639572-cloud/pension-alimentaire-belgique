@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="GYJsqlILySXEh_Xi3LT1q5XtN7iXua86_BlQkYfG9qo" />
 <title>Calculateur Pension Alimentaire Belgique 2026 — Méthode Renard + Indexation</title>
-<meta name="description" content="Calculez la pension alimentaire en Belgique selon la méthode Renard officielle. Entrez les revenus des deux parents et le nombre d'enfants → montant estimé en 60 secondes. Gratuit.">
+<meta name="description" content="Calculez la pension alimentaire en Belgique selon la méthode Renard officielle. Revenus des deux parents + nombre d'enfants → montant estimé en 60 secondes, résultat instantané. Gratuit, sans email, sans inscription.">
 <meta name="keywords" content="calculateur pension alimentaire belgique, pension alimentaire belgique calcul, méthode renard pension alimentaire, montant minimum pension alimentaire belgique, calcul pension alimentaire conjoint belgique, calcul pension alimentaire belgique methode renard, ligue des familles calcul pension alimentaire, simulateur indexation pension alimentaire belgique 2026, calculateur indexation pension alimentaire belgique, statbel indexation pension alimentaire">
 <link rel="canonical" href="https://calculateur-pension-alimentaire.be/">
 <meta property="og:title" content="Calculateur Pension Alimentaire Belgique 2026 — Méthode Renard">
@@ -83,6 +83,11 @@
           "@type": "Question",
           "name": "Que faire si le parent ne paie pas la pension alimentaire en Belgique ?",
           "acceptedAnswer": { "@type": "Answer", "text": "En cas de non-paiement, plusieurs recours existent : saisie sur salaire ou sur compte bancaire, intervention du SECAL (Service des créances alimentaires) qui avance les montants impayés et se retourne ensuite contre le débiteur. Le SECAL est un service gratuit de l'État belge accessible aux créanciers d'aliments impayés depuis plus d'un mois." }
+        },
+        {
+          "@type": "Question",
+          "name": "Ce calculateur est-il vraiment gratuit et sans inscription ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Oui. Ce calculateur est entièrement gratuit, sans création de compte, sans email requis et sans paiement. Le résultat s'affiche instantanément dans le navigateur dès que vous entrez les revenus et le nombre d'enfants — aucune donnée n'est envoyée par email ni stockée sur un serveur." }
         }
       ]
     },
@@ -252,7 +257,7 @@
   <div class="container">
     <span class="flag">🇧🇪</span>
     <h1>Calculateur Pension Alimentaire Belgique 2026</h1>
-    <p>Méthode Renard officielle + indexation automatique. Entrez les revenus des deux parents et le nombre d'enfants — résultat immédiat, gratuit.</p>
+    <p>Méthode Renard officielle + indexation automatique. Entrez les revenus des deux parents et le nombre d'enfants — résultat immédiat, gratuit. Aucune inscription, aucun email requis.</p>
   </div>
 </header>
 
@@ -280,7 +285,7 @@
         </div>
         <div class="form-group">
           <label>Nombre d'enfants communs</label>
-          <select id="nEnfants">
+          <select id="nEnfants" onchange="renderAgeInputs()">
             <option value="1">1 enfant</option>
             <option value="2">2 enfants</option>
             <option value="3">3 enfants</option>
@@ -297,6 +302,35 @@
           </select>
         </div>
       </div>
+
+      <div class="form-group full" style="margin-top:16px;">
+        <label>Mode de calcul</label>
+        <div class="radio-group">
+          <div class="radio-opt">
+            <input type="radio" name="renardMode" id="modeSimple" value="simple" checked onchange="toggleRenardMode()">
+            <label for="modeSimple">Simple (% forfaitaire)</label>
+          </div>
+          <div class="radio-opt">
+            <input type="radio" name="renardMode" id="modePrecis" value="precis" onchange="toggleRenardMode()">
+            <label for="modePrecis">Précis (coefficients par âge)</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="ages-container" style="display:none; margin-top:16px;">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Allocations familiales Parent A <span>(€/mois, optionnel)</span></label>
+            <input type="number" id="allocA" placeholder="ex: 0" min="0" value="0">
+          </div>
+          <div class="form-group">
+            <label>Allocations familiales Parent B <span>(€/mois, optionnel)</span></label>
+            <input type="number" id="allocB" placeholder="ex: 0" min="0" value="0">
+          </div>
+        </div>
+        <div class="form-grid" id="age-fields" style="margin-top:16px;"></div>
+      </div>
+
       <button class="calc-btn" onclick="calculerRenard()">Calculer la pension alimentaire →</button>
 
       <div class="result" id="result-renard">
@@ -350,7 +384,7 @@
 
     <!-- TAB 3 : FISCAL -->
     <div id="tab-fiscal" class="tab-panel">
-      <p style="font-size:0.98rem;color:var(--muted);margin-bottom:20px;">En 2026, la pension alimentaire pour enfants est <strong>déductible à 60%</strong> pour le débiteur et <strong>imposable à 60%</strong> pour le créancier (réforme fédérale : 80% jusqu'en 2024, 70% en 2025, 60% en 2026, 50% dès 2027). Calculez l'économie fiscale nette réelle.</p>
+      <p style="font-size:0.98rem;color:var(--muted);margin-bottom:20px;">En 2026, la pension alimentaire pour enfants est <strong>déductible à 60%</strong> pour le débiteur et <strong>imposable à 60%</strong> pour le créancier (réforme fédérale : 80% jusqu'en 2024, 70% en 2025, 60% en 2026, 50% dès 2027). Calculez l'économie fiscale nette réelle. <span style="color:var(--success);font-weight:600;">✓ Taux 2026 vérifié — 60%, pas 80% (taux 2023-2024, obsolète sur d'autres calculateurs).</span></p>
       <div class="form-grid">
         <div class="form-group">
           <label>Pension alimentaire versée <span>(€/mois)</span></label>
@@ -430,6 +464,27 @@ Part Parent B : (1 800 / 4 200) × 1 134 = 486 €/mois
 
 → Parent A verse <strong>648 €/mois</strong> à Parent B
   </div>
+
+  <h3 class="sub">Mode précis — coefficients par âge de l'enfant</h3>
+  <p>Le pourcentage forfaitaire ci-dessus (18%, 27%…) est une simplification par nombre d'enfants. Le calculateur propose aussi un <strong>mode précis</strong> qui pondère le coût de chaque enfant selon son âge — un enfant de 17 ans coûte statistiquement environ deux fois plus qu'un bébé de 0-1 an. Coefficients basés sur l'implémentation Renard de référence utilisée par les praticiens belges (source : calc.leotr.be) :</p>
+
+  <table class="renard-table">
+    <thead><tr><th>Âge</th><th>Coefficient</th><th>Âge</th><th>Coefficient</th></tr></thead>
+    <tbody>
+      <tr><td>0 an</td><td class="highlight-pct">0.137</td><td>10 ans</td><td class="highlight-pct">0.210</td></tr>
+      <tr><td>1 an</td><td class="highlight-pct">0.144</td><td>11 ans</td><td class="highlight-pct">0.218</td></tr>
+      <tr><td>2 ans</td><td class="highlight-pct">0.152</td><td>12 ans</td><td class="highlight-pct">0.225</td></tr>
+      <tr><td>3 ans</td><td class="highlight-pct">0.159</td><td>13 ans</td><td class="highlight-pct">0.233</td></tr>
+      <tr><td>4 ans</td><td class="highlight-pct">0.166</td><td>14 ans</td><td class="highlight-pct">0.240</td></tr>
+      <tr><td>5 ans</td><td class="highlight-pct">0.173</td><td>15 ans</td><td class="highlight-pct">0.247</td></tr>
+      <tr><td>6 ans</td><td class="highlight-pct">0.181</td><td>16 ans</td><td class="highlight-pct">0.255</td></tr>
+      <tr><td>7 ans</td><td class="highlight-pct">0.188</td><td>17 ans</td><td class="highlight-pct">0.262</td></tr>
+      <tr><td>8 ans</td><td class="highlight-pct">0.196</td><td>18 ans et +</td><td class="highlight-pct">0.270</td></tr>
+      <tr><td>9 ans</td><td class="highlight-pct">0.204</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <p>Le calcul complet en mode précis : pour chaque enfant, le coefficient de son âge est divisé par (somme des coefficients de tous les enfants + 1) — ce terme <strong>+1</strong> représente la part du ménage hors enfants. Le résultat est multiplié par le revenu combiné des deux parents, <strong>allocations familiales incluses</strong>, puis le coût net (allocations déduites) est réparti entre les parents proportionnellement à leurs revenus. Cette méthode est plus fidèle qu'un simple pourcentage forfaitaire, mais reste une estimation indicative — pas un barème publié par une autorité gouvernementale belge.</p>
 
   <h2 class="section-title">Indexation de la pension alimentaire</h2>
 
@@ -609,6 +664,10 @@ Pension indexée = Pension d'origine × (Indice du mois actuel / Indice du mois 
     <button class="faq-q" onclick="toggleFaq(this)">Ce calcul pension alimentaire Belgique 2026 est-il à jour ?</button>
     <div class="faq-a">Oui. Ce <strong>calcul pension alimentaire belgique</strong> utilise les barèmes Renard actuels et les indices Statbel 2026. Les pourcentages de la méthode Renard (18%, 27%, 36%…) sont stables depuis plusieurs années. L'indexation est mise à jour annuellement. Pour un <strong>calcul pension alimentaire conjoint belgique</strong> incluant la contribution au conjoint (pas seulement aux enfants), consultez un avocat — les règles diffèrent.</div>
   </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Ce calculateur est-il vraiment gratuit et sans inscription ?</button>
+    <div class="faq-a">Oui. Ce calculateur est entièrement gratuit, sans création de compte, sans email requis et sans paiement. Le résultat s'affiche instantanément dans le navigateur dès que vous entrez les revenus et le nombre d'enfants — aucune donnée n'est envoyée par email ni stockée sur un serveur.</div>
+  </div>
 
 </div>
 </div>
@@ -620,6 +679,12 @@ Pension indexée = Pension d'origine × (Indice du mois actuel / Indice du mois 
 
 <script>
 const RENARD_PCT = [0, 0.18, 0.27, 0.36, 0.43, 0.48];
+
+// Coefficients Renard par âge — source : calc.leotr.be/renard_leo.js, extrait et vérifié le 31/07/2026.
+// Âges 19+ plafonnés à la valeur de 18 ans (0.27), conformément à la source (leeftijd forcé à 21 si hors 0-21).
+const THEORKOST = [0.137,0.144,0.152,0.159,0.166,0.173,0.181,0.188,0.196,0.204,
+                   0.21,0.218,0.225,0.233,0.24,0.247,0.255,0.262,0.27,0.27];
+function coefAge(age) { return THEORKOST[Math.min(Math.max(age, 0), 18)]; }
 
 // Indices santé lissés belges (janvier de chaque année, base 2013=100)
 const INDICES = { 2015:102.7, 2016:103.6, 2017:105.1, 2018:107.3, 2019:109.5, 2020:110.4, 2021:111.4, 2022:115.9, 2023:129.0, 2024:131.8, 2025:134.9, 2026:137.3 };
@@ -633,19 +698,64 @@ function switchTab(name, btn) {
   btn.classList.add('active');
 }
 
+function toggleRenardMode() {
+  const precis = document.getElementById('modePrecis').checked;
+  document.getElementById('ages-container').style.display = precis ? 'block' : 'none';
+  if (precis) renderAgeInputs();
+}
+
+function renderAgeInputs() {
+  if (!document.getElementById('modePrecis').checked) return;
+  const n = Math.min(parseInt(document.getElementById('nEnfants').value) || 1, 5);
+  const container = document.getElementById('age-fields');
+  let html = '';
+  for (let i = 0; i < n; i++) {
+    html += `<div class="form-group"><label>Âge enfant ${i+1}</label><input type="number" id="age${i}" min="0" max="25" placeholder="ex: 8"></div>`;
+  }
+  container.innerHTML = html;
+}
+
 function calculerRenard() {
   const revA = parseFloat(document.getElementById('revA').value);
   const revB = parseFloat(document.getElementById('revB').value);
   const n = parseInt(document.getElementById('nEnfants').value);
   const garde = document.getElementById('garde').value;
+  const modePrecis = document.getElementById('modePrecis').checked;
 
   if (!revA || revA <= 0 || !revB || revB <= 0) { alert('Veuillez saisir les revenus des deux parents.'); return; }
 
   const revTotal = revA + revB;
-  const pct = RENARD_PCT[Math.min(n, 5)];
-  const coutTotal = revTotal * pct;
-  const partA = (revA / revTotal) * coutTotal;
-  const partB = (revB / revTotal) * coutTotal;
+  let coutTotal, partA, partB, pctAffiche = null;
+
+  if (modePrecis) {
+    const nbEnfants = Math.min(n, 5);
+    const ages = [];
+    for (let i = 0; i < nbEnfants; i++) {
+      const el = document.getElementById('age' + i);
+      const v = el ? parseInt(el.value) : NaN;
+      ages.push(isNaN(v) ? 0 : v);
+    }
+    const allocA = parseFloat(document.getElementById('allocA').value) || 0;
+    const allocB = parseFloat(document.getElementById('allocB').value) || 0;
+
+    const theoretischekosts = ages.map(coefAge);
+    const totaalTheoretisch = theoretischekosts.reduce((a, b) => a + b, 0);
+    const totaalinkomen = (revA + allocA) + (revB + allocB);
+    const brutokosts = theoretischekosts.map(t => (t / (totaalTheoretisch + 1)) * totaalinkomen);
+    const totaalbrutokost = brutokosts.reduce((a, b) => a + b, 0);
+    const totaalnettokost = totaalbrutokost - (allocA + allocB);
+    const procRevA = revA / revTotal; // hors allocations, cf. inkomenvader/(inkomenvader+inkomenmoeder) dans la source
+
+    coutTotal = totaalnettokost;
+    partA = totaalnettokost * procRevA;
+    partB = totaalnettokost - partA;
+  } else {
+    const pct = RENARD_PCT[Math.min(n, 5)];
+    coutTotal = revTotal * pct;
+    partA = (revA / revTotal) * coutTotal;
+    partB = (revB / revTotal) * coutTotal;
+    pctAffiche = pct;
+  }
 
   let pension, verseur, gardien, label;
   if (garde === 'B') {
@@ -666,7 +776,9 @@ function calculerRenard() {
 
   document.getElementById('rr-label').textContent = label;
   document.getElementById('rr-amount').textContent = fmt(Math.round(pension)) + '/mois';
-  document.getElementById('rr-sub').textContent = `Coût total d'entretien : ${fmt(Math.round(coutTotal))}/mois (${Math.round(pct*100)}% de ${fmt(Math.round(revTotal))})`;
+  document.getElementById('rr-sub').textContent = pctAffiche !== null
+    ? `Coût total d'entretien : ${fmt(Math.round(coutTotal))}/mois (${Math.round(pctAffiche*100)}% de ${fmt(Math.round(revTotal))})`
+    : `Coût total d'entretien : ${fmt(Math.round(coutTotal))}/mois (mode précis par âge, allocations familiales incluses)`;
 
   document.getElementById('rr-grid').innerHTML = `
     <div class="r-stat"><div class="sv">${fmt(Math.round(coutTotal))}</div><div class="sl">Coût total entretien</div></div>
@@ -674,9 +786,12 @@ function calculerRenard() {
     <div class="r-stat"><div class="sv">${fmt(Math.round(partB))}</div><div class="sl">Part Parent B</div></div>
   `;
 
-  const noteText = garde === 'alt'
+  let noteText = garde === 'alt'
     ? `En hébergement alterné, chaque parent absorbe ses coûts directs. ${verseur} verse la différence divisée par 2. Les frais extraordinaires restent partagés proportionnellement aux revenus.`
     : `Cette estimation est basée sur la méthode Renard. Le juge peut retenir un montant différent selon votre situation exacte (revenus variables, frais extraordinaires, nouvelles charges familiales).`;
+  if (modePrecis) {
+    noteText += ` ⚠️ Mode précis : coefficients et méthode de calcul basés sur l'implémentation Renard de référence utilisée par les praticiens belges (calc.leotr.be), incluant un terme de normalisation et les allocations familiales. Estimation indicative — ce n'est pas un barème gouvernemental officiel.`;
+  }
   document.getElementById('rr-note').textContent = '💡 ' + noteText;
 
   document.getElementById('result-renard').style.display = 'block';
